@@ -12,7 +12,7 @@
 <p>
   <img src="https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white" alt="Python 3.13+">
   <img src="https://img.shields.io/badge/Django-5.x-092E20?logo=django&logoColor=white" alt="Django 5.x">
-  <img src="https://img.shields.io/badge/WinRM-Protocol-0078D4?logo=windows&logoColor=white" alt="WinRM Protocol">
+  <img src="https://img.shields.io/badge/Go-1.22+-00ADD8?logo=go&logoColor=white" alt="Go 1.22+">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT">
 </p>
 
@@ -20,131 +20,98 @@
 
 ---
 
-## 关于 ZASCA
+## 生态概览
 
-ZASCA（Zero Agent Security Control Architecture）是一个采用**零代理架构**的企业级 Windows 主机远程管理平台。通过 WinRM 协议直接管控目标主机，无需安装任何客户端软件，为企业提供安全、高效的运维管理解决方案。
+![Ecosystem](./ecosystem.svg)
 
-### 核心特性
+### ZASCA
+
+核心管理平台，基于 Django 5.x，提供 Web 管理后台和 RESTful API。
+
+- **零代理架构**：通过 WinRM 协议直接管控 Windows 主机，无需安装客户端
+- **Django Admin 优先**：最大化利用内置管理功能，降低学习成本
+- **松耦合设计**：Gateway 为可选组件，ZASCA 可独立运行
+- **无 Redis 依赖**：Celery 使用 SQLite broker，部署更简单
+
+### Gateway
+
+隧道网关服务，基于 Go 1.22+，为零公网 IP 主机提供安全 RDP 访问通道。
+
+- **RDP 代理**：TLS SNI 域名路由，自动转发到对应隧道
+- **WSS 隧道**：WebSocket 接入层，支持心跳检测和连接池
+- **控制面**：Unix Domain Socket + msgpack 协议，Django 可控
+- **可选部署**：不部署时 ZASCA 通过 WinRM 直连，功能完全可用
+
+### Tunnel
+
+边缘代理，基于 Go 1.22+，部署在被管 Windows 主机上的轻量级隧道代理。
+
+- **Windows 服务**：安装为系统服务，开机自启
+- **多路复用**：单条 WSS 连接承载 RDP/WinRM/RemoteExec
+- **自动重连**：指数退避策略，网络中断自动恢复
+- **CI/CD**：推送 tag 自动构建 Windows 可执行文件
+
+## 核心特性
 
 ![核心特性](./features.svg)
 
 - **零代理架构**：无需在目标主机安装客户端软件，通过 WinRM 协议直接管控
+- **Gateway 隧道保护**：可选部署 Gateway，为零公网 IP 主机提供安全 RDP 访问
 - **Django Admin 优先**：最大化利用 Django 内置管理功能，降低学习成本
 - **Material Design 3**：现代化的前端用户体验，支持多主题切换
 - **RBAC 权限控制**：细粒度的角色和权限管理，满足企业合规要求
 - **安全审计**：完整的操作日志和安全监控，支持行为分析
 - **工单系统**：标准化的运维流程管理，提升协作效率
+- **主机保护模式**：按产品粒度配置，通过 Gateway 隧道隔离主机
 
-### 系统架构
+## 系统架构
 
 ![系统架构](./architecture.svg)
 
-ZASCA 采用分层架构设计：
+ZASCA 采用四层架构设计：
 
-- **管理层**：提供 Django Admin、RBAC 权限、安全审计、工单系统等管理功能
-- **核心层**：基于 WinRM 协议实现主机管理、运维操作和任务队列调度
-- **主机层**：支持 Windows Server 和 Windows 10/11，无需安装任何代理程序
+- **管理层**：Django Admin、RBAC 权限、安全审计、工单系统、主机保护配置
+- **核心层**：WinRM 客户端、Celery 任务队列、GatewayClient、证书管理
+- **网关层**（可选）：RDP 代理 (SNI 路由)、WSS 隧道服务、控制面
+- **边缘层**：Windows 服务、WSS 客户端、多路复用、远程执行
+
+## 仓库
+
+| 仓库 | 语言 | 说明 |
+|------|------|------|
+| [ZASCA](https://github.com/zascateam/ZASCA) | Python/Django | 核心管理平台 |
+| [Gateway](https://github.com/zascateam/gateway) | Go | 隧道网关 |
+| [Tunnel](https://github.com/zascateam/tunnel) | Go | 边缘代理 |
 
 ## 快速开始
 
-![快速开始流程](./workflow.svg)
-
-### 环境要求
-
-- Python 3.13+（由 `.python-version` 文件指定）
-- PostgreSQL 12+（可选，也可使用 SQLite）
-- Redis 6.0+（可选，用于缓存和 Celery）
-
-### 快速部署
-
 ```bash
-# 克隆项目
 git clone https://github.com/zascateam/ZASCA.git
 cd ZASCA
-
-# 复制环境配置文件
 cp .env.example .env
-
-# 同步依赖（UV 会自动创建虚拟环境）
 uv sync
-
-# 数据库迁移
 uv run python manage.py migrate
-
-# 创建超级用户
 uv run python manage.py createsuperuser
-
-# 启动开发服务器
 uv run python manage.py runserver
 ```
 
 访问 `http://127.0.0.1:8000/admin/` 进入管理后台。
-
-> **注意**：本项目使用 [UV](https://github.com/astral-sh/uv) 作为 Python 包管理器。所有 Python 命令都必须通过 `uv run` 执行。
-
-## 项目结构
-
-```
-ZASCA/
-├── apps/                 # 应用模块
-│   ├── accounts/        # 用户认证
-│   ├── hosts/          # 主机管理
-│   ├── operations/     # 运维操作
-│   ├── audit/          # 审计日志
-│   ├── dashboard/      # 仪表盘
-│   ├── bootstrap/      # 安全启动
-│   ├── certificates/   # 证书管理
-│   ├── plugins/        # 插件系统
-│   └── themes/         # 主题管理
-├── config/             # 项目配置
-├── docs/              # 技术文档
-├── frontend/          # 前端静态文件和模板
-├── static/            # 静态文件
-├── templates/         # 模板文件
-├── utils/             # 工具模块
-├── .env.example       # 环境配置模板
-├── .env               # 环境配置文件 (git ignore)
-├── pyproject.toml     # 项目依赖 (UV)
-└── uv.lock            # 锁定依赖版本
-```
 
 ## 安全特性
 
 - 基于角色的访问控制 (RBAC)
 - 数据传输加密 (TLS/SSL)
 - 敏感信息加密存储
-- 完整的操作审计日志
+- 完整的操作审计日志（含隧道/RDP事件）
 - 多因素认证支持
 - 防暴力破解机制
 - 安全启动和会话管理
-
-## 文档
-
-详细的项目文档请查看 [`docs/`](https://github.com/zascateam/ZASCA/tree/main/docs) 目录：
-
-- [开发规范指南](https://github.com/zascateam/ZASCA/blob/main/docs/00_开发规范指南.md) - 强制执行的开发标准
-- [项目架构与设计](https://github.com/zascateam/ZASCA/blob/main/docs/01_项目架构与设计.md) - 系统架构和技术选型
-- [API接口文档](https://github.com/zascateam/ZASCA/blob/main/docs/02_API接口文档.md) - RESTful API 详细说明
-- [Database Schema](https://github.com/zascateam/ZASCA/blob/main/docs/03_Database_Schema.md) - 数据库设计和表结构
-- [部署运维手册](https://github.com/zascateam/ZASCA/blob/main/docs/04_部署运维手册.md) - 生产环境部署指南
-- [更新日志](https://github.com/zascateam/ZASCA/blob/main/docs/05_更新日志.md) - 版本发布历史
-- [安全配置指南](https://github.com/zascateam/ZASCA/blob/main/docs/06_安全配置指南.md) - 安全策略和防护措施
-
-## 贡献指南
-
-我们欢迎任何形式的贡献！请先阅读我们的[开发规范指南](https://github.com/zascateam/ZASCA/blob/main/docs/00_开发规范指南.md)。
-
-### 开发流程
-
-1. Fork 项目
-2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
-3. 提交更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 开启 Pull Request
+- 主机保护模式（Gateway 隧道隔离）
+- Ed25519 密钥交换
 
 ## 联系我们
 
-- 项目主页: https://github.com/zascateam/ZASCA
+- 组织主页: https://github.com/zascateam
 - 问题反馈: [GitHub Issues](https://github.com/zascateam/ZASCA/issues)
 
 ---

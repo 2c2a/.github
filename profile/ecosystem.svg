@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="system-ui,-apple-system,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="zasca" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="gw" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="tn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="sh">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 6" refX="10" refY="3" markerWidth="8" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="400" rx="16" fill="url(#bg)"/>
+
+  <text x="450" y="45" text-anchor="middle" fill="#f1f5f9" font-size="24" font-weight="700">ZASCA 生态</text>
+  <text x="450" y="68" text-anchor="middle" fill="#64748b" font-size="12">零代理安全管控架构</text>
+
+  <!-- ZASCA核心 -->
+  <g filter="url(#sh)">
+    <rect x="50" y="100" width="240" height="240" rx="12" fill="url(#zasca)"/>
+    <text x="170" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">ZASCA</text>
+    <text x="170" y="162" text-anchor="middle" fill="#e9d5ff" font-size="11">核心管理平台</text>
+    <line x1="80" y1="175" x2="260" y2="175" stroke="#7c3aed" stroke-width="1"/>
+    <text x="170" y="200" text-anchor="middle" fill="#ddd6fe" font-size="10">Django 5.x 管理后台</text>
+    <text x="170" y="220" text-anchor="middle" fill="#ddd6fe" font-size="10">WinRM客户端</text>
+    <text x="170" y="240" text-anchor="middle" fill="#ddd6fe" font-size="10">RBAC + 审计日志</text>
+    <text x="170" y="260" text-anchor="middle" fill="#ddd6fe" font-size="10">Celery任务队列</text>
+    <text x="170" y="280" text-anchor="middle" fill="#ddd6fe" font-size="10">插件系统</text>
+    <text x="170" y="300" text-anchor="middle" fill="#c4b5fd" font-size="9">网关客户端（可选）</text>
+    <rect x="90" y="310" width="160" height="20" rx="4" fill="#7c3aed"/>
+    <text x="170" y="324" text-anchor="middle" fill="#e9d5ff" font-size="8">Python 3.13+ / SQLite / 无Redis</text>
+  </g>
+
+  <!-- 网关 -->
+  <g filter="url(#sh)">
+    <rect x="340" y="100" width="220" height="240" rx="12" fill="url(#gw)"/>
+    <text x="450" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">网关</text>
+    <text x="450" y="162" text-anchor="middle" fill="#cffafe" font-size="11">隧道网关服务</text>
+    <line x1="370" y1="175" x2="530" y2="175" stroke="#0e7490" stroke-width="1"/>
+    <text x="450" y="200" text-anchor="middle" fill="#cffafe" font-size="10">RDP代理 :443</text>
+    <text x="450" y="220" text-anchor="middle" fill="#cffafe" font-size="10">WSS服务 :9000</text>
+    <text x="450" y="240" text-anchor="middle" fill="#cffafe" font-size="10">控制面Socket</text>
+    <text x="450" y="260" text-anchor="middle" fill="#cffafe" font-size="10">SNI域名路由</text>
+    <text x="450" y="280" text-anchor="middle" fill="#cffafe" font-size="10">连接池 + 心跳</text>
+    <rect x="370" y="310" width="160" height="20" rx="4" fill="#0e7490"/>
+    <text x="450" y="324" text-anchor="middle" fill="#cffafe" font-size="8">Go 1.22+ / msgpack / 可选</text>
+  </g>
+
+  <!-- 隧道 -->
+  <g filter="url(#sh)">
+    <rect x="610" y="100" width="240" height="240" rx="12" fill="url(#tn)"/>
+    <text x="730" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">隧道</text>
+    <text x="730" y="162" text-anchor="middle" fill="#a7f3d0" font-size="11">边缘代理</text>
+    <line x1="640" y1="175" x2="820" y2="175" stroke="#047857" stroke-width="1"/>
+    <text x="730" y="200" text-anchor="middle" fill="#a7f3d0" font-size="10">Windows服务</text>
+    <text x="730" y="220" text-anchor="middle" fill="#a7f3d0" font-size="10">WSS客户端 + 重连</text>
+    <text x="730" y="240" text-anchor="middle" fill="#a7f3d0" font-size="10">通道多路复用</text>
+    <text x="730" y="260" text-anchor="middle" fill="#a7f3d0" font-size="10">远程PowerShell</text>
+    <text x="730" y="280" text-anchor="middle" fill="#a7f3d0" font-size="10">Ed25519密钥交换</text>
+    <rect x="650" y="310" width="160" height="20" rx="4" fill="#047857"/>
+    <text x="730" y="324" text-anchor="middle" fill="#a7f3d0" font-size="8">Go 1.22+ / CGO=0 / Windows</text>
+  </g>
+
+  <!-- 连线 -->
+  <line x1="290" y1="220" x2="338" y2="220" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="314" y="213" text-anchor="middle" fill="#60a5fa" font-size="7">Unix套接字</text>
+
+  <line x1="560" y1="220" x2="608" y2="220" stroke="#34d399" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="584" y="213" text-anchor="middle" fill="#34d399" font-size="7">WSS隧道</text>
+
+  <!-- 底部说明 -->
+  <text x="450" y="380" text-anchor="middle" fill="#475569" font-size="10">网关为可选组件 — ZASCA可通过WinRM直连独立运行</text>
+</svg>
