@@ -8,10 +8,6 @@
       <stop offset="0%" stop-color="#8b5cf6"/>
       <stop offset="100%" stop-color="#6d28d9"/>
     </linearGradient>
-    <linearGradient id="gw" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#0891b2"/>
-    </linearGradient>
     <linearGradient id="tn" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#10b981"/>
       <stop offset="100%" stop-color="#059669"/>
@@ -45,46 +41,37 @@
     <text x="170" y="324" text-anchor="middle" fill="#e9d5ff" font-size="8">Python 3.13+ / SQLite / 无Redis</text>
   </g>
 
-  <!-- 网关+隧道（已合并） -->
+  <!-- 隧道（含网关功能） -->
   <g filter="url(#sh)">
-    <!-- 网关部分 -->
-    <rect x="340" y="100" width="220" height="240" rx="12" fill="url(#gw)"/>
-    <text x="450" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">网关</text>
-    <text x="450" y="162" text-anchor="middle" fill="#cffafe" font-size="11">隧道网关服务</text>
-    <line x1="370" y1="175" x2="530" y2="175" stroke="#0e7490" stroke-width="1"/>
-    <text x="450" y="200" text-anchor="middle" fill="#cffafe" font-size="10">RDP代理 :443</text>
-    <text x="450" y="220" text-anchor="middle" fill="#cffafe" font-size="10">WSS服务 :9000</text>
-    <text x="450" y="240" text-anchor="middle" fill="#cffafe" font-size="10">控制面Socket</text>
-    <text x="450" y="260" text-anchor="middle" fill="#cffafe" font-size="10">SNI域名路由</text>
-    <text x="450" y="280" text-anchor="middle" fill="#cffafe" font-size="10">连接池 + 心跳</text>
-    <rect x="370" y="310" width="160" height="20" rx="4" fill="#0e7490"/>
-    <text x="450" y="324" text-anchor="middle" fill="#cffafe" font-size="8">Go 1.22+ / msgpack / 可选</text>
+    <rect x="340" y="100" width="510" height="240" rx="12" fill="url(#tn)"/>
+    <text x="595" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">隧道</text>
+    <text x="595" y="162" text-anchor="middle" fill="#a7f3d0" font-size="11">边缘代理（含网关功能）</text>
+    <line x1="370" y1="175" x2="820" y2="175" stroke="#047857" stroke-width="1"/>
 
-    <!-- 合并标识 -->
-    <circle cx="560" cy="220" r="14" fill="#0f172a" stroke="#34d399" stroke-width="2"/>
-    <text x="560" y="224" text-anchor="middle" fill="#34d399" font-size="12" font-weight="700">+</text>
+    <!-- 左列：原隧道功能 -->
+    <text x="450" y="200" text-anchor="middle" fill="#a7f3d0" font-size="10" font-weight="600">边缘代理</text>
+    <text x="450" y="220" text-anchor="middle" fill="#a7f3d0" font-size="10">Windows服务</text>
+    <text x="450" y="240" text-anchor="middle" fill="#a7f3d0" font-size="10">WSS客户端 + 重连</text>
+    <text x="450" y="260" text-anchor="middle" fill="#a7f3d0" font-size="10">通道多路复用</text>
+    <text x="450" y="280" text-anchor="middle" fill="#a7f3d0" font-size="10">远程PowerShell</text>
+    <text x="450" y="300" text-anchor="middle" fill="#a7f3d0" font-size="10">Ed25519密钥交换</text>
 
-    <!-- 隧道部分 -->
-    <rect x="590" y="100" width="220" height="240" rx="12" fill="url(#tn)"/>
-    <text x="700" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">隧道</text>
-    <text x="700" y="162" text-anchor="middle" fill="#a7f3d0" font-size="11">边缘代理</text>
-    <line x1="620" y1="175" x2="780" y2="175" stroke="#047857" stroke-width="1"/>
-    <text x="700" y="200" text-anchor="middle" fill="#a7f3d0" font-size="10">Windows服务</text>
-    <text x="700" y="220" text-anchor="middle" fill="#a7f3d0" font-size="10">WSS客户端 + 重连</text>
-    <text x="700" y="240" text-anchor="middle" fill="#a7f3d0" font-size="10">通道多路复用</text>
-    <text x="700" y="260" text-anchor="middle" fill="#a7f3d0" font-size="10">远程PowerShell</text>
-    <text x="700" y="280" text-anchor="middle" fill="#a7f3d0" font-size="10">Ed25519密钥交换</text>
-    <rect x="620" y="310" width="160" height="20" rx="4" fill="#047857"/>
-    <text x="700" y="324" text-anchor="middle" fill="#a7f3d0" font-size="8">Go 1.22+ / CGO=0 / Windows</text>
+    <!-- 右列：原网关功能 -->
+    <text x="690" y="200" text-anchor="middle" fill="#cffafe" font-size="10" font-weight="600">网关服务</text>
+    <text x="690" y="220" text-anchor="middle" fill="#cffafe" font-size="10">RDP代理 :443</text>
+    <text x="690" y="240" text-anchor="middle" fill="#cffafe" font-size="10">WSS服务 :9000</text>
+    <text x="690" y="260" text-anchor="middle" fill="#cffafe" font-size="10">控制面Socket</text>
+    <text x="690" y="280" text-anchor="middle" fill="#cffafe" font-size="10">SNI域名路由</text>
+    <text x="690" y="300" text-anchor="middle" fill="#cffafe" font-size="10">连接池 + 心跳</text>
+
+    <rect x="430" y="310" width="330" height="20" rx="4" fill="#047857"/>
+    <text x="595" y="324" text-anchor="middle" fill="#a7f3d0" font-size="8">Go 1.22+ / CGO=0 / Windows / msgpack</text>
   </g>
 
   <!-- 连线 -->
   <line x1="290" y1="220" x2="338" y2="220" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
   <text x="314" y="213" text-anchor="middle" fill="#60a5fa" font-size="7">Unix套接字</text>
 
-  <line x1="810" y1="220" x2="858" y2="220" stroke="#34d399" stroke-width="2" marker-end="url(#arr)"/>
-  <text x="834" y="213" text-anchor="middle" fill="#34d399" font-size="7">WSS隧道</text>
-
   <!-- 底部说明 -->
-  <text x="450" y="380" text-anchor="middle" fill="#475569" font-size="10">网关与隧道已合并为统一组件 — 2c2a可通过WinRM直连独立运行</text>
+  <text x="450" y="380" text-anchor="middle" fill="#475569" font-size="10">隧道为可选组件 — 2c2a可通过WinRM直连独立运行</text>
 </svg>

@@ -18,7 +18,7 @@
 
 </div>
 
----
+***
 
 ## 生态概览
 
@@ -77,16 +77,16 @@
 
 ## 仓库
 
-| 仓库 | 语言 | 说明 |
-|------|------|------|
-| [2c2a](https://github.com/2c2a/2c2a) | Python/Django | 核心管理平台 |
-| [Gateway](https://github.com/2c2a/gateway) | Go | 隧道网关 |
-| [Tunnel](https://github.com/2c2a/tunnel) | Go | 边缘代理 |
+| 仓库                                         | 语言            | 说明                   |
+| ------------------------------------------ | ------------- | -------------------- |
+| [2c2a](https://github.com/2c2a/webServer)       | Python/Django | 核心管理平台               |
+| [Gateway](https://github.com/2c2a/gateway) | Go            | 隧道网关                 |
+| [Tunnel](https://github.com/2c2a/tunnel)   | Go            | 边缘代理（已合并到Gateway并归档） |
 
 ## 快速开始
 
 ```bash
-git clone https://github.com/2c2a/2c2a.git
+git clone https://github.com/2c2a/webServer.git
 cd 2c2a
 cp .env.example .env
 uv sync
@@ -111,10 +111,10 @@ uv run python manage.py runserver
 
 ## 联系我们
 
-- 组织主页: https://github.com/2c2a
+- 组织主页: <https://github.com/2c2a>
 - 问题反馈: [GitHub Issues](https://github.com/2c2a/2c2a/issues)
 
----
+***
 
 <div align="center">
 
