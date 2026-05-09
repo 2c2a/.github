@@ -1,8 +1,8 @@
 <div align="center">
 
-![ZASCA Logo](./logo.svg)
+![2c2a Logo](./logo.svg)
 
-<h1>ZASCA Team</h1>
+<h1>2c2a Team</h1>
 
 <p>
   <strong>Zero Agent Security Control Architecture</strong><br>
@@ -24,13 +24,13 @@
 
 ![Ecosystem](./ecosystem.svg)
 
-### ZASCA
+### 2c2a
 
 核心管理平台，基于 Django 5.x，提供 Web 管理后台和 RESTful API。
 
 - **零代理架构**：通过 WinRM 协议直接管控 Windows 主机，无需安装客户端
 - **Django Admin 优先**：最大化利用内置管理功能，降低学习成本
-- **松耦合设计**：Gateway 为可选组件，ZASCA 可独立运行
+- **松耦合设计**：Gateway 为可选组件，2c2a 可独立运行
 - **无 Redis 依赖**：Celery 使用 SQLite broker，部署更简单
 
 ### Gateway
@@ -40,7 +40,7 @@
 - **RDP 代理**：TLS SNI 域名路由，自动转发到对应隧道
 - **WSS 隧道**：WebSocket 接入层，支持心跳检测和连接池
 - **控制面**：Unix Domain Socket + msgpack 协议，Django 可控
-- **可选部署**：不部署时 ZASCA 通过 WinRM 直连，功能完全可用
+- **可选部署**：不部署时 2c2a 通过 WinRM 直连，功能完全可用
 
 ### Tunnel
 
@@ -68,7 +68,7 @@
 
 ![系统架构](./architecture.svg)
 
-ZASCA 采用四层架构设计：
+2c2a 采用四层架构设计：
 
 - **管理层**：Django Admin、RBAC 权限、安全审计、工单系统、主机保护配置
 - **核心层**：WinRM 客户端、Celery 任务队列、GatewayClient、证书管理
@@ -79,15 +79,15 @@ ZASCA 采用四层架构设计：
 
 | 仓库 | 语言 | 说明 |
 |------|------|------|
-| [ZASCA](https://github.com/zascateam/ZASCA) | Python/Django | 核心管理平台 |
-| [Gateway](https://github.com/zascateam/gateway) | Go | 隧道网关 |
-| [Tunnel](https://github.com/zascateam/tunnel) | Go | 边缘代理 |
+| [2c2a](https://github.com/2c2a/2c2a) | Python/Django | 核心管理平台 |
+| [Gateway](https://github.com/2c2a/gateway) | Go | 隧道网关 |
+| [Tunnel](https://github.com/2c2a/tunnel) | Go | 边缘代理 |
 
 ## 快速开始
 
 ```bash
-git clone https://github.com/zascateam/ZASCA.git
-cd ZASCA
+git clone https://github.com/2c2a/2c2a.git
+cd 2c2a
 cp .env.example .env
 uv sync
 uv run python manage.py migrate
@@ -111,13 +111,13 @@ uv run python manage.py runserver
 
 ## 联系我们
 
-- 组织主页: https://github.com/zascateam
-- 问题反馈: [GitHub Issues](https://github.com/zascateam/ZASCA/issues)
+- 组织主页: https://github.com/2c2a
+- 问题反馈: [GitHub Issues](https://github.com/2c2a/2c2a/issues)
 
 ---
 
 <div align="center">
 
-*ZASCA - 让 Windows 主机管理更简单、更安全*
+*2c2a - 让 Windows 主机管理更简单、更安全*
 
 </div>

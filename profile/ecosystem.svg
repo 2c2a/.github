@@ -4,7 +4,7 @@
       <stop offset="0%" stop-color="#0f172a"/>
       <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
-    <linearGradient id="zasca" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="2c2a" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#8b5cf6"/>
       <stop offset="100%" stop-color="#6d28d9"/>
     </linearGradient>
@@ -26,13 +26,13 @@
 
   <rect width="900" height="400" rx="16" fill="url(#bg)"/>
 
-  <text x="450" y="45" text-anchor="middle" fill="#f1f5f9" font-size="24" font-weight="700">ZASCA 生态</text>
+  <text x="450" y="45" text-anchor="middle" fill="#f1f5f9" font-size="24" font-weight="700">2c2a 生态</text>
   <text x="450" y="68" text-anchor="middle" fill="#64748b" font-size="12">零代理安全管控架构</text>
 
-  <!-- ZASCA核心 -->
+  <!-- 2c2a核心 -->
   <g filter="url(#sh)">
-    <rect x="50" y="100" width="240" height="240" rx="12" fill="url(#zasca)"/>
-    <text x="170" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">ZASCA</text>
+    <rect x="50" y="100" width="240" height="240" rx="12" fill="url(#2c2a)"/>
+    <text x="170" y="140" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">2c2a</text>
     <text x="170" y="162" text-anchor="middle" fill="#e9d5ff" font-size="11">核心管理平台</text>
     <line x1="80" y1="175" x2="260" y2="175" stroke="#7c3aed" stroke-width="1"/>
     <text x="170" y="200" text-anchor="middle" fill="#ddd6fe" font-size="10">Django 5.x 管理后台</text>
@@ -83,5 +83,5 @@
   <text x="584" y="213" text-anchor="middle" fill="#34d399" font-size="7">WSS隧道</text>
 
   <!-- 底部说明 -->
-  <text x="450" y="380" text-anchor="middle" fill="#475569" font-size="10">网关为可选组件 — ZASCA可通过WinRM直连独立运行</text>
+  <text x="450" y="380" text-anchor="middle" fill="#475569" font-size="10">网关为可选组件 — 2c2a可通过WinRM直连独立运行</text>
 </svg>
