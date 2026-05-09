@@ -87,7 +87,7 @@
 
 ```bash
 git clone https://github.com/2c2a/webServer.git
-cd 2c2a
+cd webServer
 cp .env.example .env
 uv sync
 uv run python manage.py migrate
