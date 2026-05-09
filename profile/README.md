@@ -2,11 +2,11 @@
 
 ![2c2a Logo](./logo.svg)
 
-<h1>2c2a Team</h1>
+<h1>2c2a</h1>
 
 <p>
-  <strong>Zero Agent Security Control Architecture</strong><br>
-  基于 Django 的企业级 Windows 主机远程管理平台
+  <strong>Cloudy Computer Account Activation Integration Platform</strong><br>
+  一个专业的共享云计算机多机账户开通平台
 </p>
 
 <p>
